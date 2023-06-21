@@ -21,7 +21,7 @@ const Login = () => {
         <span>OA 管理系统</span>
       </div>
       <Form form={form} onFinish={submintUserInfo}>
-        {ComponentSelector({ form, FormItem, Input, Checkbox })}
+        {ComponentSelector({ form, FormItem, Input, Checkbox, Button })}
         <Row>
           <Button block type='primary'>
             登录
@@ -29,7 +29,7 @@ const Login = () => {
         </Row>
         <Row className='ft-12'>
           <Col span={6}>忘记密码？</Col>
-          <Col span={18} className='align-right'>
+          <Col span={18} className='align-right' onClick={() => setType(!type ? 1 : 0)}>
             {!type ? `使用账户名加密码形式登录` : `使用账户密码登录`}
             {IconMap.arrRowRight}
           </Col>
