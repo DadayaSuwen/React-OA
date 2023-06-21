@@ -1,11 +1,15 @@
-import { defineConfig } from 'umi';
+import { defineConfig } from 'umi'
+const { resolve } = require('path')
 
 export default defineConfig({
   nodeModulesTransform: {
-    type: 'none',
+    type: 'none'
+  },
+  alias: {
+    utils: resolve(__dirname, 'src')
   },
   // routes: [
   //   { path: '/', component: '@/pages/index' },
   // ],
-  fastRefresh: {},
-});
+  fastRefresh: {}
+})
