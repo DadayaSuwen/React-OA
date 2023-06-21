@@ -6,7 +6,7 @@ export default defineConfig({
     type: 'none'
   },
   alias: {
-    utils: resolve(__dirname, 'src')
+    utils: resolve(__dirname, './src/utils')
   },
   // routes: [
   //   { path: '/', component: '@/pages/index' },
