@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import IconMap from '@/components/IconMap'
+import { Button, Checkbox, Col, Form, Input, Row, Space } from 'antd'
+import { useState } from 'react'
 import AccountLogin from './component/AccountLogin'
 import SmCodeLogin from './component/SmCodeLogin'
-import { Form, Button, Checkbox, Input, Row, Col } from 'antd'
-import IconMap from '@/components/IconMap'
-import Logo from '@/assets/logo.png'
-import '@/pages/users/css/login.less'
+import './css/login.less'
+
 const Login = () => {
   const FormItem = Form.Item
   const [form] = Form.useForm()
@@ -12,16 +12,17 @@ const Login = () => {
   const submintUserInfo = () => {
     console.log(form.getFieldsValue())
   }
+
   // 通过type来判断是账户名登录还是手机号登录
   const ComponentSelector = props => (!type ? <AccountLogin {...props} /> : <SmCodeLogin {...props} />)
   return (
     <div className='form'>
       <div className='logo'>
-        <img src={Logo} />
-        <span>OA 管理系统</span>
+        {IconMap.logo}
+        <span>{!type ? '验证码登录' : '用户登录'}</span>
       </div>
       <Form form={form} onFinish={submintUserInfo}>
-        {ComponentSelector({ form, FormItem, Input, Checkbox, Button })}
+        {ComponentSelector({ form, FormItem, Input, Checkbox, Button, Space })}
         <Row>
           <Button block type='primary'>
             登录

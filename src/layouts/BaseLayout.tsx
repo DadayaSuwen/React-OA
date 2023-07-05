@@ -1,4 +1,4 @@
-import React from 'react'
+import { Outlet } from 'umi'
 
 const BaseLayout = props => {
   const { children } = props
@@ -6,7 +6,7 @@ const BaseLayout = props => {
     <>
       <h1>头部</h1>
       <div>侧边栏</div>
-      {children}
+      <Outlet />
     </>
   )
 }

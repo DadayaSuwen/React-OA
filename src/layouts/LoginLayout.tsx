@@ -1,8 +1,12 @@
-import React from 'react'
+import { Outlet } from 'umi'
 
 const LoginLayout = props => {
   const { children } = props
-  return <>{children}</>
+  return (
+    <>
+      <Outlet />
+    </>
+  )
 }
 
 export default LoginLayout

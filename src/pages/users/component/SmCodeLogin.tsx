@@ -1,9 +1,9 @@
-import React, { useState, ChangeEvent } from 'react'
 import IconMap from '@/components/IconMap'
 import { loginRule } from '@/utils/rules'
+import { useState } from 'react'
 
 const SmCodeLogin = props => {
-  const { Input, FormItem, Button, form } = props
+  const { Input, FormItem, Button, form, Space } = props
   const [disabled, setDisabled] = useState<boolean>(true)
   const [currentStatus, setCurrentStatus] = useState<boolean>(true)
   const [currentTime, setCurrentTime] = useState<number>(60)
@@ -48,15 +48,12 @@ const SmCodeLogin = props => {
         <Input placeholder='请输入手机号码' prefix={IconMap.mobile} onChange={checkMobile} />
       </FormItem>
       <FormItem name='code' rules={loginRule.codeRule} hasFeedback>
-        <Input
-          placeholder='请输入验证码'
-          prefix={IconMap.password}
-          addonAfter={
-            <Button disabled={disabled} onClick={_sendSmcode}>
-              {currentStatus ? '获取验证码' : `${currentTime}秒后重发送`}
-            </Button>
-          }
-        />
+        <Space.Compact>
+          <Input placeholder='请输入验证码' prefix={IconMap.password} />
+          <Button disabled={disabled} type='primary' ghost onClick={_sendSmcode}>
+            {currentStatus ? '获取验证码' : `${currentTime}秒后重发送`}
+          </Button>
+        </Space.Compact>
       </FormItem>
     </>
   )
