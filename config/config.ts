@@ -1,14 +1,20 @@
 import { defineConfig } from 'umi'
 
 export default defineConfig({
-  dva: {},
+  initialState: {},
+  model: {},
+  dva: {
+    immer: { enableES5: true },
+    extraModels: []
+  },
   // routes: [
   //   { path: '/', component: '@/pages/index' },
   // ],
   fastRefresh: true,
   proxy: {
     '/api': {
-      target: 'http://localhost:7001'
+      target: 'http://127.0.0.1:7001',
+      changeOrigin: true
     }
   },
   locale: {

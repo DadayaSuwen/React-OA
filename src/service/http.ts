@@ -1,15 +1,14 @@
-import { qs } from 'qs'
 import { message } from 'antd'
+import fetch from 'node-fetch'
+import { qs } from 'qs'
 import { history } from 'umi'
 
-const fetch = require('dva').fetch
-
 const checkStatus = (response: any) => {
-  if (response.status >= 200 && response.status < 300) {
+  if (response && response.status >= 200 && response.status < 300) {
     return response
   }
-  message.error(`网络请求错误${response.status}`)
-  throw new Error(response.statusText)
+  message.error(`网络请求错误${response ? response.status : 'Unknown'}`)
+  throw new Error(response ? response.statusText : 'Unknown error')
 }
 
 const judegStatus = async (response: any) => {
@@ -39,7 +38,7 @@ class Http {
     const defaultOptions = {
       mode: 'cors',
       headers: {
-        Authorization: sessionStorage.get('token') || ''
+        Authorization: sessionStorage.getItem('token') || ''
       }
     }
     if (options.method === 'POST' || options.method === 'PUT') {

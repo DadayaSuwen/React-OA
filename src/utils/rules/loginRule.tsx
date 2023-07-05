@@ -37,21 +37,6 @@ export const loginRule = {
       message: '手机号格式错误'
     }
   ],
-  // moblieRule: [
-  //   {
-  //     vilidator: (rule, val) => {
-  //       const mobileReg = /^1[3456789]\d{9}$/
-  //       switch (true) {
-  //         case !Boolean(val):
-  //           return Promise.reject('请填写手机号')
-  //         case !mobileReg.test(val):
-  //           return Promise.reject('手机号格式错误')
-  //         default:
-  //           return Promise.resolve()
-  //       }
-  //     }
-  //   }
-  // ],
   codeRule: [
     { required: true, message: '请输入验证码' },
     { max: 6, message: '验证码最大长度为6位' },

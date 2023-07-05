@@ -1,6 +1,7 @@
 import IconMap from '@/components/IconMap'
 import { Button, Checkbox, Col, Form, Input, Row, Space } from 'antd'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'umi'
 import AccountLogin from './component/AccountLogin'
 import SmCodeLogin from './component/SmCodeLogin'
 import './css/login.less'
@@ -9,8 +10,18 @@ const Login = () => {
   const FormItem = Form.Item
   const [form] = Form.useForm()
   const [type, setType] = useState<number>(0)
-  const submintUserInfo = () => {
-    console.log(form.getFieldsValue())
+  const dispatch = useDispatch()
+  const loading = useSelector(state => state.loading)
+  console.log(loading)
+  const submintUserInfo = async () => {
+    const data = await form.validateFields()
+    dispatch({
+      type: 'users/login',
+      payload: {
+        ...data,
+        type
+      }
+    })
   }
 
   // 通过type来判断是账户名登录还是手机号登录
@@ -19,12 +30,12 @@ const Login = () => {
     <div className='form'>
       <div className='logo'>
         {IconMap.logo}
-        <span>{!type ? '验证码登录' : '用户登录'}</span>
+        <span>{!type ? '用户登录' : '验证码登录'}</span>
       </div>
       <Form form={form} onFinish={submintUserInfo}>
         {ComponentSelector({ form, FormItem, Input, Checkbox, Button, Space })}
         <Row>
-          <Button block type='primary'>
+          <Button block type='primary' htmlType='submit'>
             登录
           </Button>
         </Row>
